@@ -9,6 +9,12 @@ function App() {
   let [tabContent,setTabContent]= useState();
 //let tabContent = 'Please Click A Button';
 
+//<CoreConcepts  title={CORE_CONCEPTS[0].title} description= {CORE_CONCEPTS[0].description} image ={CORE_CONCEPTS[0].image}/>
+//<CoreConcepts  title={CORE_CONCEPTS[1].title} description= {CORE_CONCEPTS[1].description} image ={CORE_CONCEPTS[1].image}/>
+//<CoreConcepts  title={CORE_CONCEPTS[2].title} description= {CORE_CONCEPTS[2].description} image ={CORE_CONCEPTS[2].image}/>
+//<CoreConcepts  {...CORE_CONCEPTS[3]}/>
+
+
   function handleSelect(selectedButton){
 
     console.log(selectedButton);
@@ -22,10 +28,10 @@ function App() {
           
             <h2>Core Concepts</h2>
             <ul>
-              <CoreConcepts  title={CORE_CONCEPTS[0].title} description= {CORE_CONCEPTS[0].description} image ={CORE_CONCEPTS[0].image}/>
-              <CoreConcepts  title={CORE_CONCEPTS[1].title} description= {CORE_CONCEPTS[1].description} image ={CORE_CONCEPTS[1].image}/>
-              <CoreConcepts  title={CORE_CONCEPTS[2].title} description= {CORE_CONCEPTS[2].description} image ={CORE_CONCEPTS[2].image}/>
-              <CoreConcepts  {...CORE_CONCEPTS[3]}/>
+            {CORE_CONCEPTS.map((conceptItem)=>(
+              <CoreConcepts key={conceptItem.title}{...conceptItem}/>
+              ))}
+             
             </ul>
         </section>
        <section id ="examples">
