@@ -1,9 +1,19 @@
 import Header from './components/Header/Header.jsx';
-import {CORE_CONCEPTS} from './data.js';
+import {CORE_CONCEPTS, EXAMPLES} from './data.js';
 import CoreConcepts from './components/CoreConcept/CoreConcept.jsx';
+import TabButton from './components/TabButton/TabButton.jsx';
+import { useState } from 'react';
 
 
 function App() {
+  let [tabContent,setTabContent]= useState();
+//let tabContent = 'Please Click A Button';
+
+  function handleSelect(selectedButton){
+
+    console.log(selectedButton);
+    setTabContent(selectedButton);
+}
   return (
     <div>
       <Header></Header>
@@ -18,7 +28,25 @@ function App() {
               <CoreConcepts  {...CORE_CONCEPTS[3]}/>
             </ul>
         </section>
-       
+       <section id ="examples">
+        <h2>Examples</h2>
+        <menu>
+         <TabButton  isSelected={tabContent ==='components'} onSelect={()=>handleSelect('components')}>Components</TabButton>
+         <TabButton isSelected={tabContent ==='jsx'} onSelect={()=>handleSelect('jsx')}>JSX</TabButton>
+         <TabButton isSelected={tabContent ==='props'} onSelect={()=>handleSelect('props')}>Props</TabButton>
+         <TabButton isSelected={tabContent ==='state'} onSelect={()=>handleSelect('state')}>State</TabButton>
+        </menu>
+        {!tabContent? <p>Please Select a Topic</p>:<div id = "tab-content">
+                                                      <h3>{EXAMPLES[tabContent].title}</h3>
+                                                      <p>{EXAMPLES[tabContent].description}</p>
+                                                              <pre>
+                                                                <code>
+                                                                {EXAMPLES[tabContent].code}
+                                                                </code>
+                                                              </pre>
+                                                    </div>} 
+        
+       </section>
       </main>
     </div>
   );
